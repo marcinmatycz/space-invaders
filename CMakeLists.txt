@@ -11,11 +11,19 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-add_compile_options(
+enable_testing()
+add_subdirectory(test)
+
+find_package(raylib REQUIRED)
+
+add_executable(${PROJECT_NAME} main.cpp)
+
+target_link_libraries(${PROJECT_NAME} raylib)
+
+target_compile_options(
+  ${PROJECT_NAME}
+  PRIVATE
   -Wold-style-cast
-  # -gdwarf-2
-  # -fdata-sections
-  # -ffunction-sections
   -Wall
   -Wpedantic
   -Wextra
@@ -35,13 +43,4 @@ add_compile_options(
   -Wduplicated-branches
   -Wlogical-op
   -Wuseless-cast
-  )
-
-enable_testing()
-add_subdirectory(test)
-
-find_package(raylib REQUIRED)
-# include(raylib)
-
-add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} raylib)
+)
