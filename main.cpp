@@ -1,4 +1,5 @@
 #include "raylib.h"
+#include "star_generator.hpp"
 
 int main()
 {
@@ -6,6 +7,7 @@ int main()
     //--------------------------------------------------------------------------------------
     const int screenWidth = 800;
     const int screenHeight = 450;
+    const auto stars_background = generate_stars_background<screenWidth, screenHeight>();
     
     InitWindow(screenWidth, screenHeight, "raylib [core] example - keyboard input");
 
@@ -29,9 +31,13 @@ int main()
         //----------------------------------------------------------------------------------
         BeginDrawing();
 
-            ClearBackground(RAYWHITE);
+            ClearBackground(BLACK);
 
             DrawText("move the ball with arrow keys", 10, 10, 20, DARKGRAY);
+
+            for(const auto &star : stars_background){
+                DrawTriangle(star.v1, star.v2, star.v3, star.color);
+            }
 
             DrawCircleV(ballPosition, 50, MAROON);
 
