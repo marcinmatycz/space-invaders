@@ -13,8 +13,9 @@ set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
 enable_testing()
 add_subdirectory(test)
+add_subdirectory(raylib)
 
-find_package(raylib REQUIRED)
+# find_package(raylib REQUIRED)
 
 add_executable(${PROJECT_NAME} main.cpp)
 
