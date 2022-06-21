@@ -1,0 +1,1 @@
+cd build/test; make; ./unit_tests
